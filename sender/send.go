@@ -6,6 +6,7 @@ import (
 	"log"
 	"net"
 	"os"
+	"strings"
 	"time"
 
 	"io/ioutil"
@@ -62,9 +63,11 @@ func main() {
 	// Send each chunk to the destination
 	for _, chunk := range chunks {
 
-		// Prepare the ICMP body
-		name := filePath // Nama
-		nameBytes := []byte(name)
+		// get file name
+		parts := strings.Split(filePath, "/")
+		fileName := parts[len(parts)-1]
+
+		nameBytes := []byte(fileName)
 
 		// Check the length of the name
 		if len(nameBytes) > 100 {

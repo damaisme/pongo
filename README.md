@@ -1,11 +1,11 @@
 # go-icmp
 File Transfer over ICMP
 
-## How this works
+## Here's how it works
 ![file-tf-through-icmp](https://github.com/radendi/go-icmp/assets/73756341/18b76660-b684-4521-b7ad-e288193f31d1)
 
 
-Read more:
+Read more: https://blog.dama.zip/2023/06/file-transfer-over-ping-icmp-messages.html
 
 ## Usage
 Show help using `go run send.go -help` or `go run recv.go -help`

@@ -60,7 +60,7 @@ func main() {
 	}
 
 	// Split the file into smaller chunks
-	chunks := splitData(fileData, maxSize)
+	chunks := splitData(fileData, maxSize-150)
 
 	// Send each chunk to the destination
 	for _, chunk := range chunks {

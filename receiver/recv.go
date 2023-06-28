@@ -14,10 +14,9 @@ import (
 func main() {
 	listen := flag.String("l", "127.0.0.1", "Listen IP address")
 	p := flag.String("p", "", "Password for identifier")
+	helpFlag := flag.Bool("help", false, "Display help message")
 
 	flag.Parse()
-
-	helpFlag := flag.Bool("help", false, "Display help message")
 
 	// Parse the command-line flags
 	flag.Parse()

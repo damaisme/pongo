@@ -17,16 +17,17 @@ import (
 
 func main() {
 	dst := flag.String("d", "127.0.0.1", "DestinationIP address")
-	id := flag.Int("id", 0, "Identifier 1-65535")
+	// id := flag.Int("id", 0, "Identifier 1-65535")
 	f := flag.String("f", "", "File Path to send")
 	s := flag.Int("s", 8980, "Max packet size")
+	p := flag.String("p", "icmp-go", "Password for identifier")
 
 	helpFlag := flag.Bool("help", false, "Display help message")
 
 	// Parse the command-line flags
 	flag.Parse()
 
-	if *f == "" || *id == 0 {
+	if *f == "" || *p == "" {
 		printHelp()
 		os.Exit(0)
 	}
@@ -39,9 +40,10 @@ func main() {
 
 	// Destination IP address
 	destination := *dst
-	identifier := *id
+	// identifier := *id
 	filePath := *f
 	maxSize := *s
+	password := *p
 
 	// Create a connection
 	conn, err := icmp.ListenPacket("ip4:icmp", "0.0.0.0")
@@ -68,6 +70,16 @@ func main() {
 		fileName := parts[len(parts)-1]
 
 		nameBytes := []byte(fileName)
+		passwordBytes := []byte(password)
+
+		// Check the length of the password
+		if len(passwordBytes) > 50 {
+			passwordBytes = passwordBytes[:50]
+		} else if len(passwordBytes) < 50 {
+			// If the name is shorter than 50 bytes, add padding
+			padding := make([]byte, 50-len(passwordBytes))
+			passwordBytes = append(passwordBytes, padding...)
+		}
 
 		// Check the length of the name
 		if len(nameBytes) > 100 {
@@ -78,15 +90,16 @@ func main() {
 			nameBytes = append(nameBytes, padding...)
 		}
 
-		// Create the final message by concatenating the name and buffer
-		bodyData := append(nameBytes, chunk...)
+		// Create the final message
+		bodyData := append(passwordBytes, nameBytes...)
+		bodyData = append(bodyData, chunk...)
 
 		// Create ICMP message
 		msg := icmp.Message{
 			Type: ipv4.ICMPTypeEcho,
 			Code: 0,
 			Body: &icmp.Echo{
-				ID:   identifier, // Set the ICMP identifier value here
+				ID:   12345, // Set the ICMP identifier value here
 				Seq:  1,
 				Data: bodyData,
 			},

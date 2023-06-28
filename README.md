@@ -19,8 +19,8 @@ Options:
         File Path to send
   -help
         Display help message
-  -id int
-        Identifier 1-65535
+  -p string
+        Password for identifier (default "icmp-go")
   -s int
         Max packet size (default 8980)
 ```
@@ -31,20 +31,20 @@ Usage: recv.go [options]
 Options:
   -help
         Display help message
-  -id int
-        Identifier 1-65535
   -l string
         Listen IP address (default "127.0.0.1")
+  -p string
+        Password for identifier
 ```
 
 ## Example
 Sender:
 ```
-go run send.go -f image.jpg -d 127.0.0.1 -id 12345 -s 1500
+go run send.go -f image.jpg -d 127.0.0.1 -p pass12345 -s 1500
 ```
 
 Receiver:
 ```
-go run recv.go -l 127.0.0.1 -id 12345 
+go run recv.go -l 127.0.0.1 -p pass12345 
 ```
 The file will be saved in the receiver as `received_image.jpg`

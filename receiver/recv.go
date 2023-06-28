@@ -67,7 +67,9 @@ func main() {
 			// Retrieve the body of the ICMP message
 			switch body := packet.Body.(type) {
 			case *icmp.Echo:
-
+				if len(body.Data) < 150 {
+					continue
+				}
 				icmpPass := string(body.Data[:50])
 				name := string(body.Data[50:150])
 				// Delete the padding

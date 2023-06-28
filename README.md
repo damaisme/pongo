@@ -2,7 +2,9 @@
 File Transfer over ICMP
 
 ## How this works
-![file-tf-through-icmp](https://github.com/radendi/go-icmp/assets/73756341/48c819a9-0a73-413b-a7f3-9993c8a73997)
+![file-tf-through-icmp](https://github.com/radendi/go-icmp/assets/73756341/18b76660-b684-4521-b7ad-e288193f31d1)
+
+
 Read more:
 
 ## Usage

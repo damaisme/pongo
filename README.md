@@ -1,4 +1,4 @@
-# go-icmp
+# Pongo
 **Pongo** is an innovative ICMP (Internet Control Message Protocol) file transfer tool designed to allow users to transfer files over a network using ICMP packets. It is a lightweight and efficient solution for transferring files in scenarios where traditional methods may not be suitable.
 
 ## Here's how it works

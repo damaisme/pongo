@@ -7,46 +7,69 @@
 
 Read more: https://blog.dama.zip/2023/06/file-transfer-over-ping-icmp-messages.html
 
-## Usage
-Show help using `go run send.go -help` or `go run recv.go -help`
+## How to Get Started
+### Pre-Built Binary (linux amd64 only)
 
-send.go :
+Download the Binary:
+
+Run the following command to download the pre-built binary for your platform (Linux AMD64 in this example):
+
 ```
-Sending file through ICMP
-Usage: send.go [options]
-Options:
-  -d string
-        DestinationIP address (default "127.0.0.1")
-  -f string
-        File Path to send
-  -help
-        Display help message
-  -p string
-        Password for identifier (default "icmp-go")
-  -s int
-        Max packet size (default 8980)
-```
-recv.go:
-```
-Receiving file through ICMP
-Usage: recv.go [options]
-Options:
-  -help
-        Display help message
-  -l string
-        Listen IP address (default "127.0.0.1")
-  -p string
-        Password for identifier
+wget https://github.com/radendi/pongo/releases/download/v1.0.0/pongo-linux-amd64
 ```
 
-## Example
+Make the binary executable:
+```
+chmod +x pongo-linux-amd64
+```
+
+Move the binary to a directory in your system's PATH, so you can run it from anywhere:
+```
+sudo mv pongo-linux-amd64 /usr/local/bin/pongo
+```
+
+Start Using Pongo:
+```
+pongo -h
+```
+
+You can now use Pongo to transfer files using ICMP packets.
+
+### Build Manually from Source Code
+
+Clone the Repository:
+
+Run the following command to clone the Pongo repository from GitHub:
+```
+git clone https://github.com/radendi/pongo.git
+```
+
+Build Pongo using the go build command:
+```
+cd pongo
+go build -o pongo
+```
+Install Pongo:
+
+Move the generated binary to a directory in your system's PATH, so you can run it from anywhere:
+```
+sudo mv pongo /usr/local/bin/pongo
+```
+
+Start Using Pongo:
+```
+pongo -h
+```
+You can now use Pongo to transfer files using ICMP packets.
+
+## Example Usage
 Sender:
 ```
-go run send.go -f image.jpg -d 127.0.0.1 -p pass12345 -s 1500
+pongo send -f image.jpg -d 127.0.0.1 -s secret12345 -m 5000
 ```
 
 Receiver:
 ```
-go run recv.go -l 127.0.0.1 -p pass12345 
+pongo recv -l 127.0.0.1 -s secret12345 -o received/
 ```
-The file will be saved in the receiver as `received_image.jpg`
+The file will be saved in the receiver at `received/image.jpg`

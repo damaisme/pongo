@@ -5,7 +5,7 @@
 ![file-tf-through-icmp](https://github.com/radendi/go-icmp/assets/73756341/18b76660-b684-4521-b7ad-e288193f31d1)
 
 
-Read more: https://blog.dama.zip/2023/06/file-transfer-over-ping-icmp-messages.html
+Read more: [https://blog.dama.zip/file-transfer-over-ping-icmp-messages](https://blog.dama.zip/file-transfer-over-ping-icmp-messages)
 
 ## How to Get Started
 ### Pre-Built Binary (linux amd64 only)
